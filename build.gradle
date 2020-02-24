@@ -1,0 +1,36 @@
+buildscript {
+    // ext 는 build.gradle 에서 전역변수로 사용할 변수들을 추가하는 부분이다.
+    ext {
+        springBootVersion = '2.1.7.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+// 아래의 4개는 자바, 스프링부트를 사용하기위한 필수 플러그인
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+// io.spring.dependecy-management 는 스프링부트의 읜존성들을 관리해주는 플러그인
+apply plugin: 'io.spring.dependency-management'
+
+group 'com.noop.study'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+// 각종 의존성(라이브러리)을 어떤 원격 저장소에서 받을지 지정
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+// 프로젝트 개발에 필요한 의존성들을 선언하는 곳
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
