@@ -16,8 +16,7 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
-// io.spring.dependecy-management 는 스프링부트의 읜존성들을 관리해주는 플러그인
-apply plugin: 'io.spring.dependency-management'
+apply plugin: 'io.spring.dependency-management'     // 스프링부트의 의존성들을 관리해주는 플러그인
 
 group 'com.noop.study'
 version '1.0-SNAPSHOT'
@@ -32,5 +31,7 @@ repositories {
 // 프로젝트 개발에 필요한 의존성들을 선언하는 곳
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.projectlombok:lombok')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
+
