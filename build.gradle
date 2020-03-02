@@ -34,6 +34,7 @@ dependencies {
     compile('org.projectlombok:lombok')     // 롬복 getter 자동생성
     compile('org.springframework.boot:spring-boot-starter-data-jpa')    // 스프링부트용 Spring Data Jpa 라이브러리
     compile('com.h2database:h2')    // 메모리에서 실행되는 DB, 애플리케이션 재시작시마다 초기화, 테스트용으로 좋음
+    compile('org.springframework.boot:spring-boot-starter-mustache')    // 머스테치
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
