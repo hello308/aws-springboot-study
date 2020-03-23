@@ -22,9 +22,9 @@ script: "./gradlew clean build"
 
 # deploy 명령어가 실행되기전에 수행된다. codeDeploy는 jar를 인식하지 못한다.
 before_deploy:
-  - zip -r noop-springboot-webservice *
+  - zip -r aws-springboot-study *
   - mkdir -p deploy
-  - mv noop-springboot-webservice.zip deploy/noop-springboot-webservice.zip
+  - mv aws-springboot-study.zip deploy/aws-springboot-study.zip
 
 # 외부서비스와 연동될 행위들을 선언한다.
 deploy:
@@ -42,10 +42,10 @@ deploy:
     access_key_id: $AWS_ACCESS_KEY # travis repo settings에 설정된 값
     secret_access_key: $AWS_SECRET_KEY # travis repo settings에 설정된 값
     bucket: noop-springboot-build # S3 버킷
-    key: noop-springboot-webservice.zip # 빌드 파일을 압축해서 전달
+    key: aws-springboot-study.zip # 빌드 파일을 압축해서 전달
     bundle_type: zip # 압축 확장자
-    application: noop-springboot-webservice # 웹 콘솔에서 등록한 CodeDeploy 애플리케이션
-    deployment_group: noop-springboot-webservice-group # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
+    application: aws-springboot-study # 웹 콘솔에서 등록한 CodeDeploy 애플리케이션
+    deployment_group: aws-springboot-study-group # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
     region: ap-northeast-2
     wait-until-deployed: true
 
