@@ -1,0 +1,6 @@
+version: 0.0  # CodeDeploy의 버전을 명시
+os: linux
+files:
+  - source: / # 이동시킬 대상을 지정 (루트)
+    destination: /home/ec2-user/app/step2/zip/  # 소스에서 지정된 파일을 받을 위치
+    overwrite: yes
