@@ -20,6 +20,24 @@ before_install:
 # 마스터브랜치에 푸시되었을때 수행하는 명령어
 script: "./gradlew clean build"
 
+# deploy 명령어가 실행되기전에 수행된다. codeDeploy는 jar를 인식하지 못한다.
+before_deploy:
+  - zip -r noop-springboot-webservice *
+  - mkdir -p deploy
+  - mv noop-springboot-webservice.zip deploy/noop-springboot-webservice.zip
+
+# 외부서비스와 연동될 행위들을 선언한다.
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY # travis repo settings에 설정된 값
+    secret_access_key: $AWS_SECRET_KEY # travis repo settings에 설정된 값
+    bucket: noop-springboot-build # S3 버킷
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: private # zip 파일 접근을 private로 한다
+    local_dir: deploy # before_deploy에서 생성한 디렉토리
+    wait-until-deployed: true
+
 #CI 실행 완료시 메일로 알람
 notifications:
   email:
